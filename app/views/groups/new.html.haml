@@ -1,0 +1,11 @@
+.row
+  .span6
+    #intro
+      %h1 Start your group
+      = render 'form', group: @group, submit_text: "Start group!"
+  .span4.offset1
+    .info-box#informal-group
+      %h2 Loomio is for everyone!
+      %p We have a payment model that suits any group, even those with no money :)
+      %p
+        = link_to "Find out more", pricing_path

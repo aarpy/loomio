@@ -1,7 +1,7 @@
 class GroupsController < GroupBaseController
   before_filter :authenticate_user!, except: :show
 
-  before_filter :load_resource_by_key, except: :create
+  before_filter :load_resource_by_key, :except => [:create, :new]
   authorize_resource except: :create
 
   before_filter :ensure_group_is_setup, only: :show
@@ -31,6 +31,11 @@ class GroupsController < GroupBaseController
       @subgroup = @group
       render 'groups/add_subgroup'
     end
+  end
+
+  def new
+    @group = Group.new
+    @group.payment_plan = 'undetermined'
   end
 
   def update

@@ -33,10 +33,11 @@ When(/^I click the invitation link$/) do
   # click_email_link_matching(invitation_url(@group_request.token))
 end
 
-When(/^I fill in the group name and submit the form$/) do
+When(/^I complete and submit the form$/) do
   @group_name = "Hermans Herbs"
-  fill_in :group_request_name, with: @group_name
-  click_on 'sign-up-submit'
+  fill_in :group_name, with: @group_name
+  fill_in :group_description, with: "A collection of the finest herbs"
+  click_on 'Start group!'
 end
 
 When(/^I sign in to Loomio$/) do

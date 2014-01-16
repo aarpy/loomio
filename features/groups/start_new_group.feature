@@ -24,15 +24,22 @@ Scenario: Guest creates group
   And I setup the group
   Then I should see the group page with a contribute link
 
+# Scenario: User creates group
+#   Given I am logged in
+#   When I go to start a new group from the navbar
+#   When I fill in the group name and submit the form
+#   Then I should see the thank you page
+#   And I should recieve an email with an invitation link
+#   When I click the invitation link
+#   And I setup the group
+#   And the example content should be created
+#   Then I should see the group page with a contribute link
+
 Scenario: User creates group
   Given I am logged in
   When I go to start a new group from the navbar
-  When I fill in the group name and submit the form
-  Then I should see the thank you page
-  And I should recieve an email with an invitation link
-  When I click the invitation link
-  And I setup the group
-  And the example content should be created
+  And show me the page
+  And I complete and submit the form
   Then I should see the group page with a contribute link
 
 @javascript
