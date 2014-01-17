@@ -17,19 +17,19 @@ class GroupsController < GroupBaseController
     @subgroup.members_invitable_by = parent.members_invitable_by
   end
 
-  #for create group
-  # NOTE (JL): This seems to only be for creating subgroups. Should
-  # be more clear
   def create
     @group = Group.new(permitted_params.group)
     authorize!(:create, @group)
+    @group.update_attribute(:setup_completed_at, Time.zone.now.utc)
     if @group.save
       @group.add_admin! current_user
       flash[:success] = t("success.group_created")
       redirect_to @group
+    elsif @group.is_a_subgroup?
+        @subgroup = @group
+        render 'groups/add_subgroup'
     else
-      @subgroup = @group
-      render 'groups/add_subgroup'
+      render 'form'
     end
   end
 
